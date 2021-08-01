@@ -51,5 +51,35 @@ public class MyLinkedList<E> implements Iterable<E> {
             }
         };
     }
+    public boolean isEmpty() {
+        return head == null;
+    }
+    public void remove(E element) {
+
+        // Store head node
+        Node temp = head, prev = null;
+
+        // If head node itself holds the key to be deleted
+        if (temp != null && temp.data == element) {
+            head = temp.next; // Changed head
+            return;
+        }
+
+        // Search for the key to be deleted, keep track of
+        // the previous node as we need to change temp.next
+        while (temp != null && temp.data != element) {
+            prev = temp;
+            temp = temp.next;
+        }
+
+        // If key was not present in linked list
+        if (temp == null)
+            return;
+
+        // Unlink the node from linked list
+        prev.next = temp.next;
+
+
+    }
 
 }
