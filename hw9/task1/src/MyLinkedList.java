@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.Iterator;
 
 public class MyLinkedList<E> implements Iterable<E> {
@@ -167,6 +168,28 @@ public class MyLinkedList<E> implements Iterable<E> {
             counter++;
             temp=temp.next;
         }
+    }
+    public void addAll(Collection<? extends E> collection){
+
+        if(collection.isEmpty())
+            return;
+
+        for(E e : collection)
+            add(e);
+    }
+    public int size() {
+
+        int counter = 0;
+
+        Node current = head;
+
+        while (current != null) {
+
+            counter++;
+            current = current.next;
+
+        }
+        return counter;
     }
 
 }
