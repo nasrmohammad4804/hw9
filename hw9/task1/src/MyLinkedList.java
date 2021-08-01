@@ -52,9 +52,11 @@ public class MyLinkedList<E> implements Iterable<E> {
             }
         };
     }
+
     public boolean isEmpty() {
         return head == null;
     }
+
     public void remove(E element) {
 
         // Store head node
@@ -82,101 +84,107 @@ public class MyLinkedList<E> implements Iterable<E> {
 
 
     }
-    public void addFirst(E element){
-        Node first,prev;
 
-        first=new Node(element);
-        prev=head;
+    public void addFirst(E element) {
+        Node first, prev;
 
-        head=first;
-        head.next=prev;
+        first = new Node(element);
+        prev = head;
+
+        head = first;
+        head.next = prev;
 
     }
 
-    public void add(int index, E element){
+    public void add(int index, E element) {
 
-        if( !(index<=size()) )
+        if (!(index <= size()))
             throw new IndexOutOfBoundsException("this index not exists");
 
-        Node prev=null,newNode,temp=head,after=null;
+        Node prev = null, newNode, temp = head, after = null;
 
-        newNode=new Node(element);
+        newNode = new Node(element);
 
-        if(index==0){
+        if (index == 0) {
             addFirst(element);
             return;
         }
-        if(index==size()){
+        if (index == size()) {
             addLast(element);
             return;
         }
 
 
-        int counter=0;
-        while (temp!=null){
+        int counter = 0;
+        while (temp != null) {
 
-            if(counter+1==index){
-                prev=temp;
-                after=temp.next;
+            if (counter + 1 == index) {
+                prev = temp;
+                after = temp.next;
                 break;
             }
             counter++;
-            temp=temp.next;
+            temp = temp.next;
         }
 
-        if(prev!=null && after!=null){
+        if (prev != null && after != null) {
 
-            prev.next=newNode;
-            newNode.next=after;
+            prev.next = newNode;
+            newNode.next = after;
         }
 
     }
-    public E get(int index){
 
-        if( !( index<size() ) ){
+    public E get(int index) {
+
+        if (!(index < size())) {
             throw new IndexOutOfBoundsException("this index not exists");
         }
-        Node temp=head;
-        int counter=0;
+        Node temp = head;
+        int counter = 0;
 
-        while (temp!=null){
-            if(counter==index)
+        while (temp != null) {
+            if (counter == index)
                 return temp.data;
 
-            temp=temp.next;
+            temp = temp.next;
             counter++;
         }
         return null;
     }
-    public void addLast(E element){
+
+    public void addLast(E element) {
         add(element);
     }
-    public void set(int index , E element){
 
-        if( !( index<size() ) ){
+    public void set(int index, E element) {
+
+        if (!(index < size())) {
             throw new IndexOutOfBoundsException("this index not exists");
         }
 
-        int counter=0;
-        Node temp=head;
+        int counter = 0;
+        Node temp = head;
 
-        while (temp!=null){
+        while (temp != null) {
 
-            if(counter==index)
-                temp.data=element;
+            if (counter == index)
+                temp.data = element;
 
             counter++;
-            temp=temp.next;
+            temp = temp.next;
         }
     }
-    public void addAll(Collection<? extends E> collection){
 
-        if(collection.isEmpty())
+    public void addAll(Collection<? extends E> collection) {
+
+        if (collection.isEmpty())
             return;
 
-        for(E e : collection)
+        for (E e : collection)
             add(e);
     }
+
     public int size() {
 
         int counter = 0;
