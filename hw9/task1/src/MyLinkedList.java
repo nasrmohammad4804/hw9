@@ -130,5 +130,43 @@ public class MyLinkedList<E> implements Iterable<E> {
         }
 
     }
+    public E get(int index){
+
+        if( !( index<size() ) ){
+            throw new IndexOutOfBoundsException("this index not exists");
+        }
+        Node temp=head;
+        int counter=0;
+
+        while (temp!=null){
+            if(counter==index)
+                return temp.data;
+
+            temp=temp.next;
+            counter++;
+        }
+        return null;
+    }
+    public void addLast(E element){
+        add(element);
+    }
+    public void set(int index , E element){
+
+        if( !( index<size() ) ){
+            throw new IndexOutOfBoundsException("this index not exists");
+        }
+
+        int counter=0;
+        Node temp=head;
+
+        while (temp!=null){
+
+            if(counter==index)
+                temp.data=element;
+
+            counter++;
+            temp=temp.next;
+        }
+    }
 
 }
