@@ -39,24 +39,25 @@ public class OrderRepositoryImpl extends BaseRepositoryImpl<Order, Long> {
 
         ArrayList<Product> allOrder = new ArrayList<>();
 
-        long number = list.stream().filter(x -> x.getCustomer().getId() == customerId).count();
+        long number = list.stream().filter(x -> x.getCustomer().getId().equals(customerId)).count();
 
         if (number > 0) {
             System.out.println("order_id    product_id    product_number     price          orderDate             productName");
         } else {
-            System.out.println("not exists ordered ...");
+            System.out.println("not exists ordered ...\n\n");
             return;
         }
 
         for (OrderDetail orderDetail : list) {
-            if (orderDetail.getCustomer().getId() == customerId)
+            if (orderDetail.getCustomer().getId().equals(customerId))
 
-                System.out.println(orderDetail.getId() + "    " +
-                        orderDetail.getList().get(0).getId() + "    " +
-                        orderDetail.getList().get(0).getNumberOfProduct()
-                        + "    " + orderDetail.getList().get(0).getPrice()
-                        + "    " + orderDetail.getOrderDate() + "    " +
+                System.out.printf("%-15d %-13d %-12d %-11d %-27s %s\n",
+                        orderDetail.getId(), orderDetail.getList().get(0).getId(),
+                        orderDetail.getList().get(0).getNumberOfProduct(),
+                        orderDetail.getList().get(0).getPrice(),
+                        orderDetail.getOrderDate(),
                         orderDetail.getList().get(0).getName());
+
         }
 
     }

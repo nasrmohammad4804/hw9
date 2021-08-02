@@ -11,15 +11,15 @@ import java.util.Scanner;
 
 public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, CustomerRepositoryImpl> {
 
-    private  Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public CustomerServiceImpl(CustomerRepositoryImpl repository) {
         super(repository);
 
     }
 
-    public  Customer register() {
-        
+    public Customer register() {
+
         Map<String, String> map = new LinkedHashMap<>();
         map.put("name", "");
         map.put("family", "");
@@ -45,7 +45,7 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
         return Data.getData().getCustomerRepository().registerCheck(c);
     }
 
-    public  Customer login() {
+    public Customer login() {
 
         Map<String, String> map = new LinkedHashMap<>();
         map.put("userName", "");
@@ -63,11 +63,6 @@ public class CustomerServiceImpl extends BaseServiceImpl<Customer, Long, Custome
         }
         return Data.getData().getCustomerRepository().loginCustomer(map.get("userName"), map.get("password"));
     }
-
-
-
-    /*@Override
-    public Customer findById(Long aLong) {
-        return null;
-    }*/
 }
+
+

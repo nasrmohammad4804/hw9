@@ -24,10 +24,11 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
 
     }
-    public void initial(){
-        productService= Data.getData().getProductService();
-        orderService=Data.getData().getOrderService();
-        orderDetailService=Data.getData().getOrderDetailService();
+
+    public void initial() {
+        productService = Data.getData().getProductService();
+        orderService = Data.getData().getOrderService();
+        orderDetailService = Data.getData().getOrderDetailService();
     }
 
     public void showAllProduct() {
@@ -42,18 +43,22 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
         while (true) {
             try {
+                Scanner sc = new Scanner(System.in);
 
                 System.out.println("enter productId ...");
-                productId = scanner.nextLong();
+                productId = sc.nextLong();
+
+                if (!(productId >= 1 && productId <= 6))
+                    throw new Exception(" all product is 6 between 1 to 6 )) ");
 
                 product = productService.findById(productId);
 
                 if (product == null) {
-                    throw new Exception("id not exists");
+                    throw new Exception("input not valid");
                 }
                 break;
             } catch (Exception e) {
-                System.out.println(e.getMessage() + " ..." + "try again");
+                System.out.println(e.getMessage() + " ..." + "try again\n");
             }
         }
         return product;
@@ -70,6 +75,9 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
         if (repository.numberOfProductInBasketForCustomer(customer.getId(), product.getId()) == 0) {
             repository.add(new Basket(customer, product));
+
+            int result = product.getNumberOfProduct();
+            product.setNumberOfProduct(--result);
             productService.update(product);
         } else {
             if (product.getNumberOfProduct() == 0)
@@ -77,13 +85,13 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
             else {
                 int productNumber = product.getNumberOfProduct();
-                productNumber++;
 
-                product.setNumberOfProduct(productNumber);
+                int number = repository.numberOfProductInBasketForCustomer(customer.getId(), product.getId());
+                number++;
+                product.setNumberOfProduct(number);
                 repository.update(new Basket(customer, product));
 
                 --productNumber;
-                productNumber--;
 
                 product.setNumberOfProduct(productNumber);
                 productService.update(product);
@@ -94,6 +102,7 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
     public void removeProduct(Customer customer) {
 
+        showAllProduct();
         Product product = checkProductValid();
         try {
 
@@ -113,13 +122,14 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
             } else {
 
-                int result = product.getNumberOfProduct();
-                product.setNumberOfProduct(--result);
+                int productNumberOfMarket = product.getNumberOfProduct();
+
+                int productNumberOfBasket = repository.numberOfProductInBasketForCustomer(customer.getId(), product.getId());
+
+                product.setNumberOfProduct(--productNumberOfBasket);
                 repository.update(new Basket(customer, product));
 
-                result++;
-
-                product.setNumberOfProduct(++result);
+                product.setNumberOfProduct(++productNumberOfMarket);
                 productService.update(product);
             }
 
@@ -130,6 +140,10 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
     public void showTotalPrice(Customer customer) {
 
+        if (repository.getAll(customer.getId()).isEmpty()) {
+            System.out.println("basket is empty !!!\n\n");
+            return;
+        }
         long total = repository.getAll(customer.getId()).stream().map(x -> x.getNumberOfProduct() * x.getPrice()).reduce(Integer::sum).get();
 
         repository.getAll(customer.getId()).stream().map(x ->
@@ -174,9 +188,9 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
                 case "yes" -> {
                     Data.getData().getConnection().setAutoCommit(false);
-                    orderService.add(new Order(orderService.size(), customer, Timestamp.valueOf(LocalDateTime.now())));
+                    orderService.add(new Order(customer, Timestamp.valueOf(LocalDateTime.now())));
 
-                    orderDetailService.add(new OrderDetail(customer, Timestamp.valueOf(LocalDateTime.now()),
+                    orderDetailService.add(new OrderDetail(orderService.size(), customer, Timestamp.valueOf(LocalDateTime.now()),
                             repository.getAll(customer.getId())));
 
                     repository.confirmBasket(customer.getId(), repository.getAll(customer.getId()));
@@ -184,7 +198,7 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
                     Data.getData().getConnection().commit();
                 }
-                case  "no" -> System.out.println("final register filed !!! \n\n");
+                case "no" -> System.out.println("final register filed !!! \n\n");
 
                 default -> {
                     System.out.println("try again ...");

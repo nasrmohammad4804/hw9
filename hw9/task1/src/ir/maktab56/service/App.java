@@ -38,6 +38,7 @@ public class App {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("error occurred in  create table");
+            e.printStackTrace();
             start();
         }
     }

@@ -26,7 +26,6 @@ public class OrderDetailsRepositoryImpl extends BaseRepositoryImpl<OrderDetail, 
     public void add(OrderDetail element) throws SQLException {
 
         PreparedStatement preparedStatement;
-
         for (Product p : element.getList()) {
 
             preparedStatement = connection.prepareStatement(ADD_ORDER_OF_DETAILS);
@@ -54,7 +53,7 @@ public class OrderDetailsRepositoryImpl extends BaseRepositoryImpl<OrderDetail, 
             ArrayList<Product> arr = new ArrayList<>();
 
             arr.add(new Product(resultSet.getLong("product_id"),
-                    resultSet.getString("productName"),
+                    resultSet.getString("name"),
                     resultSet.getInt("product_number"),
                     resultSet.getInt("price")));
 
