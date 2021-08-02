@@ -34,12 +34,13 @@ public abstract class BaseServiceImpl<E extends BaseEntity<ID>, ID, R extends Ba
     @Override
     public E update(E element) throws SQLException {
 
-       return repository.update(element);
+        return repository.update(element);
     }
 
 
     @Override
     public int size() throws SQLException {
-       return repository.size();
+        return repository.size();
     }
 }
+

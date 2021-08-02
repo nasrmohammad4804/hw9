@@ -20,6 +20,7 @@ public class OrderDetail extends Order{
         super(id, orderDate);
 
         this.list=list;
+
     }
 
     public List<Product> getList() {
@@ -33,7 +34,7 @@ public class OrderDetail extends Order{
     @Override
     public String toString() {
         return "OrderDetail{" +
-                "customer=" + customer +
+                "customer=" +customer  +
                 ", orderDate=" + orderDate +
                 ", list=" + list +
                 '}';

@@ -40,11 +40,5 @@ public class Order extends BaseEntity<Long> {
         this.orderDate = orderDate;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "customer=" + customer +
-                ", orderDate=" + orderDate +
-                '}';
-    }
+
 }

@@ -39,3 +39,4 @@ public class Basket extends BaseEntity<Long> {
                 '}';
     }
 }
+

@@ -49,32 +49,6 @@ public class BasketRepositoryImpl extends BaseRepositoryImpl<Basket, Long> imple
         preparedStatement.executeUpdate();
     }
 
-    /*public void showAllProduct(Long customerId) {
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SHOW_ALL_PRODUCT_IN_BASKET_OF_CUSTOMER,
-                ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
-
-            preparedStatement.setLong(1, customerId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (!resultSet.last()) {
-                System.out.println("basket is empty");
-                return;
-            }
-            resultSet.beforeFirst();
-
-            System.out.println("productId    productName   number   price  status");
-            while (resultSet.next()) {
-                System.out.println(resultSet.getLong("product_id") + "    " +
-                        resultSet.getString("name") + "    " +
-                        resultSet.getInt("number_product") + "    " +
-                        resultSet.getInt("price"));
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }*/
 
     @Override
     public List<Product> getAll(Long customerId) {

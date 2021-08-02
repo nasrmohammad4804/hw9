@@ -25,7 +25,7 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
     }
     public void initial(){
-        productService=Data.getData().getProductService();
+        productService= Data.getData().getProductService();
         orderService=Data.getData().getOrderService();
         orderDetailService=Data.getData().getOrderDetailService();
     }

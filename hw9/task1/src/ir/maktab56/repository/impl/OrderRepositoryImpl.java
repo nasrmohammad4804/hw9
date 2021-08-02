@@ -4,7 +4,6 @@ import ir.maktab56.base.repository.impl.BaseRepositoryImpl;
 import ir.maktab56.domain.Order;
 import ir.maktab56.domain.OrderDetail;
 import ir.maktab56.domain.Product;
-import ir.maktab56.repository.impl.OrderDetailsRepositoryImpl;
 
 import java.sql.*;
 import java.util.ArrayList;

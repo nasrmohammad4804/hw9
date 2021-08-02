@@ -49,7 +49,7 @@ public class Data {
 
     public static Data getData() {
 
-      return data;
+        return data;
     }
 
     public Connection getConnection() {
@@ -96,3 +96,4 @@ public class Data {
         return orderDetailService;
     }
 }
+

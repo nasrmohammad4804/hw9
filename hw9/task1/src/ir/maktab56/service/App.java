@@ -5,7 +5,6 @@ import ir.maktab56.domain.Customer;
 import ir.maktab56.service.impl.BasketServiceImpl;
 import ir.maktab56.service.impl.CustomerServiceImpl;
 import ir.maktab56.service.impl.OrderServiceImpl;
-import ir.maktab56.service.impl.ProductServiceImpl;
 
 import java.sql.SQLException;
 import java.util.Scanner;
