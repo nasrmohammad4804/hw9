@@ -8,9 +8,9 @@ import java.sql.DriverManager;
 
 public class Data {
 
-    private final static Data data = new Data();
+    private static   Data data =new Data();
 
-    private Connection connection = null;
+    private Connection connection;
 
     private final CustomerRepositoryImpl customerRepository;
     private final ProductRepositoryImpl productRepository;
@@ -40,15 +40,16 @@ public class Data {
         basketRepository = new BasketRepositoryImpl(connection);
 
         customerService = new CustomerServiceImpl(customerRepository);
-        basketService = new BasketServiceImpl(basketRepository);
         orderService = new OrderServiceImpl(orderRepository);
         productService = new ProductServiceImpl(productRepository);
         orderDetailService=new OrderDetailServiceImpl(orderDetailsRepository);
+        basketService = new BasketServiceImpl(basketRepository);
 
     }
 
     public static Data getData() {
-        return data;
+
+      return data;
     }
 
     public Connection getConnection() {

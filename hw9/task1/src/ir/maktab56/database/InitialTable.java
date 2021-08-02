@@ -16,7 +16,8 @@ public class InitialTable {
             "password varchar(50) not null )";
 
 
-    private static final String ORDER_DETAILS_REPO = "create table if not exists orderDetails(order_id int,product_id int,product_number int ,price int," +
+    private static final String ORDER_DETAILS_REPO = "create table if not exists orderDetails(id int primary key auto_increment ," +
+            " order_id int,product_id int,product_number int ,price int," +
             "foreign key(order_id) references orders(id) , foreign key(product_id ) references product(id)   )";
 
 
