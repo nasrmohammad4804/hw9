@@ -24,6 +24,7 @@ public class Customer extends BaseEntity<Long> {
         this.password = password;
 
     }
+    public Customer() {}
 
     public String getName() {
         return name;
