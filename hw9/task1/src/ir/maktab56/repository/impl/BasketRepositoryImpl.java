@@ -21,7 +21,7 @@ public class BasketRepositoryImpl extends BaseRepositoryImpl<Basket, Long> imple
             "as p on p.id=b.product_id where customer_id=? and status='payment' ";*/
 
     private final String GET_ALL_PRODUCT_IN_BASKET_OF_CUSTOMER = "select b.*, p.name as name from basket as b join product " +
-            "as p on p.id=b.product_id where  customer_id=?  status='payment' ";
+            "as p on p.id=b.product_id where  customer_id=?  and  status='payment' ";
 
 
     private final String UPDATE = "update basket set  number_product=? where customer_id=? and product_id=? and status='payment'";

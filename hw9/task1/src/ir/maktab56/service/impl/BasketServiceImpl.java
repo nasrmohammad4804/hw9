@@ -15,12 +15,19 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
     private Scanner scanner = new Scanner(System.in);
 
-    private ProductServiceImpl productService = Data.getData().getProductService();
-    private OrderServiceImpl orderService = Data.getData().getOrderService();
-    private OrderDetailServiceImpl orderDetailService = Data.getData().getOrderDetailService();
+    private ProductServiceImpl productService;
+    private OrderServiceImpl orderService;
+    private OrderDetailServiceImpl orderDetailService;
 
     public BasketServiceImpl(BasketRepositoryImpl repository) {
         super(repository);
+
+
+    }
+    public void initial(){
+        productService=Data.getData().getProductService();
+        orderService=Data.getData().getOrderService();
+        orderDetailService=Data.getData().getOrderDetailService();
     }
 
     public void showAllProduct() {
