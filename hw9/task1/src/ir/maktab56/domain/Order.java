@@ -14,6 +14,10 @@ public class Order extends BaseEntity<Long> {
         this.customer=customer;
         this.orderDate=orderDate;
     }
+    public Order(long id ,  Timestamp orderDate){
+        super(id);
+        this.orderDate=orderDate;
+    }
 
     public Order(Customer customer,Timestamp orderDate){
         this.customer=customer;

@@ -7,7 +7,7 @@ public class OrderDetail extends Order{
 
     private List<Product> list;
 
-    public OrderDetail(int id, Customer customer, Timestamp orderDate, List<Product> list) {
+    public OrderDetail(long id, Customer customer, Timestamp orderDate, List<Product> list) {
         super(id, customer, orderDate);
         this.list = list;
     }
@@ -15,6 +15,11 @@ public class OrderDetail extends Order{
     public OrderDetail(Customer customer, Timestamp orderDate, List<Product> list) {
         super(customer, orderDate);
         this.list = list;
+    }
+    public OrderDetail(long id  , Timestamp orderDate, List<Product> list  ){
+        super(id, orderDate);
+
+        this.list=list;
     }
 
     public List<Product> getList() {
