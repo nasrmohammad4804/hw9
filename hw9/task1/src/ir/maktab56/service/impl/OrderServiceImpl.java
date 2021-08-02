@@ -16,7 +16,13 @@ public class OrderServiceImpl extends BaseServiceImpl<Order,Long, OrderRepositor
     @Override
     public void  add(Order element) throws SQLException {
         super.add(element);
+
     }
+    public void showAllOrderedProduct(Long customerId) throws SQLException {
+
+        repository.showAllOrderedProduct(customerId);
+    }
+
 
 
 

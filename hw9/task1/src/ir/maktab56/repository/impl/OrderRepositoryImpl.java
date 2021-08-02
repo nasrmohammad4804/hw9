@@ -34,7 +34,7 @@ public class OrderRepositoryImpl extends BaseRepositoryImpl<Order, Long> {
     }
 
 
-    public void showAllOrderedProduct(int customerId) throws SQLException {
+    public void showAllOrderedProduct(Long customerId) throws SQLException {
 
         List<OrderDetail> list = repository.getAll();
 
