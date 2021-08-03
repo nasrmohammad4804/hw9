@@ -18,7 +18,6 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
     private ProductServiceImpl productService;
     private OrderServiceImpl orderService;
-   // private OrderDetailServiceImpl orderDetailService;
 
     public BasketServiceImpl(BasketRepositoryImpl repository) {
         super(repository);
@@ -29,7 +28,6 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
     public void initial() {
         productService = Data.getData().getProductService();
         orderService = Data.getData().getOrderService();
-       // orderDetailService = Data.getData().getOrderDetailService();
     }
 
     public void showAllProduct() {
@@ -199,10 +197,6 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
                             new OrderDetail( customer, Timestamp.valueOf(LocalDateTime.now()),
                                     repository.getAll(customer.getId())));
 
-                    /*orderService.add(new Order(customer, Timestamp.valueOf(LocalDateTime.now())));
-
-                    orderDetailService.add(new OrderDetail(orderService.size(), customer, Timestamp.valueOf(LocalDateTime.now()),
-                            repository.getAll(customer.getId())));*/
 
                     orderService.addOrder(orderDTO);
 
