@@ -102,7 +102,12 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
     public void removeProduct(Customer customer) {
 
-        showAllProduct();
+        if(repository.checkNumberOfProductInBasket(customer.getId()) ==0){
+            System.out.println("basket is empty !!!\n\n");
+            return;
+        }
+        showAllProductInBasket(customer);
+
         Product product = checkProductValid();
         try {
 

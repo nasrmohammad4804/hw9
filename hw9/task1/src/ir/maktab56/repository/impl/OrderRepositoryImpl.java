@@ -37,7 +37,6 @@ public class OrderRepositoryImpl extends BaseRepositoryImpl<Order, Long> {
 
         List<OrderDetail> list = repository.getAll();
 
-        ArrayList<Product> allOrder = new ArrayList<>();
 
         long number = list.stream().filter(x -> x.getCustomer().getId().equals(customerId)).count();
 
