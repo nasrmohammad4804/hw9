@@ -13,6 +13,7 @@ public class Main {
             System.out.println(myLinkedList.get(i));
         }
 
+        System.out.println("after set\n\n");
         myLinkedList.set(3,"aida");
         myLinkedList.set(1,"naghi");
         // myLinkedList.set(7,"nazanin");
@@ -23,6 +24,7 @@ public class Main {
         System.out.println("------------------------");
 
         myLinkedList.add(4,"mona");
+        System.out.println("after add last\n");
 
         for(String str : myLinkedList)
             System.out.println(str);
@@ -35,10 +37,37 @@ public class Main {
 
         myLinkedList.addAll(arr);
 
+        System.out.println("after addAll\n");
         for(String str : myLinkedList)
             System.out.println(str);
 
+        System.out.println("-------------------------------------------");
 
+        System.out.println("get First\n");
+        System.out.println(myLinkedList.getFirst());
+        System.out.println("getLast\n");
+        System.out.println(myLinkedList.getLast());
+        System.out.println("to Array\n\n ");
+        for(Object object : myLinkedList.toArray())
+            System.out.println(object);
+
+
+        System.out.println("***********************************************************");
+
+        System.out.println(myLinkedList.contains("mansoor"));
+        System.out.println(myLinkedList.contains("taghi"));
+        System.out.println(myLinkedList.contains("ali"));
+        System.out.println(myLinkedList.contains("akbar"));
+        System.out.println(myLinkedList.contains("fateme"));
+
+        System.out.println("###############################################");
+
+        myLinkedList.clear();
+
+        System.out.println("size : "+myLinkedList.size());
+
+        for(String str : myLinkedList)
+            System.out.println(str);
       /* System.out.println("size  : "+myLinkedList.size() );
 
 
@@ -68,7 +97,6 @@ public class Main {
 
         for(String str : myLinkedList)
             System.out.println(str);*/
-
 
     }
 }

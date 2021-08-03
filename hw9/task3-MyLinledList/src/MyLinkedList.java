@@ -199,5 +199,47 @@ public class MyLinkedList<E> implements Iterable<E> {
         }
         return counter;
     }
+    public E getFirst() {
+
+        return head.data;
+    }
+
+    public E getLast() {
+
+        int lastIndex = size() - 1;
+
+        return get(lastIndex);
+    }
+
+    public boolean contains(E element) {
+
+        Node temp = head;
+
+        while (temp != null) {
+
+            if (temp.data.equals(element))
+                return true;
+
+            temp = temp.next;
+        }
+        return false;
+    }
+
+    public void clear() {
+
+        head = tail = null;
+    }
+
+    public Object[] toArray() {
+
+        Object[] objects = new Object[size()];
+
+        int index = 0;
+
+        for (Node x = head; x != null; x = x.next)
+            objects[index++] = x.data;
+
+        return objects;
+    }
 
 }
