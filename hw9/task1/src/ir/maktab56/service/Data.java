@@ -40,9 +40,9 @@ public class Data {
         basketRepository = new BasketRepositoryImpl(connection);
 
         customerService = new CustomerServiceImpl(customerRepository);
-        orderService = new OrderServiceImpl(orderRepository);
-        productService = new ProductServiceImpl(productRepository);
         orderDetailService=new OrderDetailServiceImpl(orderDetailsRepository);
+        orderService = new OrderServiceImpl(orderRepository, orderDetailService);
+        productService = new ProductServiceImpl(productRepository);
         basketService = new BasketServiceImpl(basketRepository);
 
     }

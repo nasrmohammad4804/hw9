@@ -29,7 +29,6 @@ public class OrderDetailsRepositoryImpl extends BaseRepositoryImpl<OrderDetail, 
         for (Product p : element.getList()) {
 
             preparedStatement = connection.prepareStatement(ADD_ORDER_OF_DETAILS);
-
             preparedStatement.setLong(1, element.getId());
             preparedStatement.setLong(2, p.getId());
             preparedStatement.setInt(3, p.getNumberOfProduct());

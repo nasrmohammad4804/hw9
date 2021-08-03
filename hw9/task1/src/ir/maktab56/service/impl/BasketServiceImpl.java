@@ -4,6 +4,7 @@ import ir.maktab56.base.service.impl.BaseServiceImpl;
 import ir.maktab56.domain.*;
 import ir.maktab56.repository.impl.BasketRepositoryImpl;
 import ir.maktab56.service.Data;
+import ir.maktab56.service.dto.OrderDTO;
 import ir.maktab56.service.enumaration.StateOfProductInBasket;
 
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
     private ProductServiceImpl productService;
     private OrderServiceImpl orderService;
-    private OrderDetailServiceImpl orderDetailService;
+   // private OrderDetailServiceImpl orderDetailService;
 
     public BasketServiceImpl(BasketRepositoryImpl repository) {
         super(repository);
@@ -28,7 +29,7 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
     public void initial() {
         productService = Data.getData().getProductService();
         orderService = Data.getData().getOrderService();
-        orderDetailService = Data.getData().getOrderDetailService();
+       // orderDetailService = Data.getData().getOrderDetailService();
     }
 
     public void showAllProduct() {
@@ -193,10 +194,17 @@ public class BasketServiceImpl extends BaseServiceImpl<Basket, Long, BasketRepos
 
                 case "yes" -> {
                     Data.getData().getConnection().setAutoCommit(false);
-                    orderService.add(new Order(customer, Timestamp.valueOf(LocalDateTime.now())));
+
+                    OrderDTO orderDTO=new OrderDTO(new Order(customer, Timestamp.valueOf(LocalDateTime.now())),
+                            new OrderDetail( customer, Timestamp.valueOf(LocalDateTime.now()),
+                                    repository.getAll(customer.getId())));
+
+                    /*orderService.add(new Order(customer, Timestamp.valueOf(LocalDateTime.now())));
 
                     orderDetailService.add(new OrderDetail(orderService.size(), customer, Timestamp.valueOf(LocalDateTime.now()),
-                            repository.getAll(customer.getId())));
+                            repository.getAll(customer.getId())));*/
+
+                    orderService.addOrder(orderDTO);
 
                     repository.confirmBasket(customer.getId(), repository.getAll(customer.getId()));
 
